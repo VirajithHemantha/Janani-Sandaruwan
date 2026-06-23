@@ -166,6 +166,45 @@ function FlipCard({
   );
 }
 
+function Countdown() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const targetDate = new Date("2026-10-23T09:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center gap-2 md:gap-4 mt-2 md:mt-4">
+      {Object.entries(timeLeft).map(([unit, value]) => (
+        <div key={unit} className="flex flex-col items-center">
+          <div className="bg-sage/10 rounded-lg p-1.5 md:p-3 min-w-[2.5rem] md:min-w-[4rem] border border-sage/20 shadow-sm backdrop-blur-sm">
+            <span className="serif text-lg md:text-3xl text-sage font-bold drop-shadow-sm">{value.toString().padStart(2, '0')}</span>
+          </div>
+          <span className="text-[6px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-widest text-zinc-500 mt-1 md:mt-2 font-bold">{unit}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function RealisticPetal({ size = 20, className = "" }: { size?: number; className?: string }) {
   const organicPetal = "M15 30C15 30 0 25 0 15C0 5 10 0 15 0C20 0 30 5 30 15C30 25 15 30 15 30Z";
 
@@ -1164,7 +1203,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full h-full col-span-2 lg:col-span-2"
           >
-            <div className="w-full h-[220px] md:h-[350px] lg:h-[350px] relative overflow-hidden rounded-[2rem] shadow-2xl border border-white/40 ring-1 ring-black/5">
+            <div className="w-full h-[280px] md:h-[350px] lg:h-[350px] relative overflow-hidden rounded-[2rem] shadow-2xl border border-white/40 ring-1 ring-black/5">
               <div className="w-full h-full bg-[#F5EFE0] p-2 md:p-8 flex flex-col items-center justify-center text-center space-y-2 md:space-y-4 relative group">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-40 pointer-events-none" />
                 <div className="relative z-10 space-y-2 md:space-y-8 scale-[0.9] md:scale-100">
@@ -1193,6 +1232,8 @@ export default function App() {
                       Twenty Twenty Six
                     </p>
                   </div>
+
+                  <Countdown />
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 h-4 bg-paper clip-path-[polygon(0%_100%,_5%_80%,_10%_100%,_15%_80%,_20%_100%,_25%_80%,_30%_100%,_35%_80%,_40%_100%,_45%_80%,_50%_100%,_55%_80%,_60%_100%,_65%_80%,_70%_100%,_75%_80%,_80%_100%,_85%_80%,_90%_100%,_95%_80%,_100%_100%)] opacity-50" />
