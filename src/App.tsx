@@ -192,13 +192,31 @@ function Countdown() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center gap-2 md:gap-4 mt-2 md:mt-4">
-      {Object.entries(timeLeft).map(([unit, value]) => (
-        <div key={unit} className="flex flex-col items-center">
-          <div className="bg-sage/10 rounded-lg p-1.5 md:p-3 min-w-[2.5rem] md:min-w-[4rem] border border-sage/20 shadow-sm backdrop-blur-sm">
-            <span className="serif text-lg md:text-3xl text-sage font-bold drop-shadow-sm">{value.toString().padStart(2, '0')}</span>
+    <div className="flex items-center justify-center gap-2 md:gap-4 mt-6 md:mt-8 relative z-10">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-24 bg-sage/5 blur-2xl rounded-full pointer-events-none" />
+      {Object.entries(timeLeft).map(([unit, value], index) => (
+        <div key={unit} className="flex items-center gap-2 md:gap-4">
+          <div className="flex flex-col items-center group">
+            <div className="relative w-12 h-14 md:w-16 md:h-20 flex items-center justify-center bg-gradient-to-br from-paper/80 to-paper/40 backdrop-blur-md rounded-xl border border-white/60 shadow-[0_4px_20px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.8)] overflow-hidden transition-transform duration-500 group-hover:scale-105">
+              <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/30 to-transparent" />
+              <div className="absolute inset-x-0 top-1/2 h-px bg-white/30" />
+              <span 
+                className="serif text-2xl md:text-4xl text-umber font-medium drop-shadow-sm relative z-10"
+                style={{ fontVariantNumeric: "tabular-nums" }}
+              >
+                {value.toString().padStart(2, '0')}
+              </span>
+            </div>
+            <span className="text-[7px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.4em] text-taupe mt-3 font-semibold relative z-10">
+              {unit}
+            </span>
           </div>
-          <span className="text-[6px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-widest text-zinc-500 mt-1 md:mt-2 font-bold">{unit}</span>
+          {index < 3 && (
+            <div className="flex flex-col gap-1 md:gap-2 -mt-6 opacity-50">
+              <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-sage" />
+              <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-sage" />
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -272,7 +290,7 @@ type GuestEntry = {
 };
 
 function RSVPForm() {
-  const endpoint = "https://script.google.com/macros/s/AKfycbxZVTd5GCe9muBwQYjkrlG6L2V5CNE7rJnvp1IqGy-OHNHY7pduecsyGUyyL2APDmay/exec";
+  const endpoint = "https://script.google.com/macros/s/AKfycbymlKpyB67W4Z4HmUSzeXhbErQMTEdkQjwCxpgDhVUQ8Hh12993AC2dx8sk6yyef-layw/exec";
 
   const [attendance, setAttendance] = useState<Attendance>("yes");
   const [partyType, setPartyType] = useState<PartyType>("individual");

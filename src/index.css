@@ -18,17 +18,24 @@
   --font-sans: "Inter", sans-serif;
 
   /* Primary accent — drives all `sage` classes */
-  --color-sage:   #B8724F;   /* Darker Dusty Peach */
+  --color-sage: #B8724F;
+  /* Darker Dusty Peach */
 
   /* Background — drives all `paper` classes */
-  --color-paper:  #FCF9F6;   /* Soft Ivory */
+  --color-paper: #FCF9F6;
+  /* Soft Ivory */
 
   /* Extended palette */
-  --color-sand:   #EAE0D6;   /* Warm Beige */
-  --color-taupe:  #6D5248;   /* Darker Taupe */
-  --color-rust:   #9C5B3E;   /* Darker Rose Gold / Rust */
-  --color-umber:  #241914;   /* Very Dark Espresso Brown */
-  --color-sienna: #DDAF99;   /* Darker Soft Blush */
+  --color-sand: #EAE0D6;
+  /* Warm Beige */
+  --color-taupe: #6D5248;
+  /* Darker Taupe */
+  --color-rust: #9C5B3E;
+  /* Darker Rose Gold / Rust */
+  --color-umber: #241914;
+  /* Very Dark Espresso Brown */
+  --color-sienna: #DDAF99;
+  /* Darker Soft Blush */
 }
 
 body {
@@ -42,21 +49,38 @@ body {
 .font-light {
   font-weight: 500 !important;
 }
+
 .font-normal {
   font-weight: 600 !important;
 }
-.opacity-50, .opacity-60, .opacity-70 {
+
+.opacity-50,
+.opacity-60,
+.opacity-70 {
   opacity: 0.9 !important;
 }
-.text-sage\/40, .text-sage\/50, .text-sage\/60, .text-sage\/80 {
+
+.text-sage\/40,
+.text-sage\/50,
+.text-sage\/60,
+.text-sage\/80 {
   color: var(--color-sage) !important;
   opacity: 1 !important;
 }
-.text-umber\/40, .text-umber\/50, .text-umber\/60, .text-umber\/70, .text-umber\/80 {
+
+.text-umber\/40,
+.text-umber\/50,
+.text-umber\/60,
+.text-umber\/70,
+.text-umber\/80 {
   color: var(--color-umber) !important;
   opacity: 1 !important;
 }
-.text-taupe\/40, .text-taupe\/50, .text-taupe\/60, .text-taupe\/80 {
+
+.text-taupe\/40,
+.text-taupe\/50,
+.text-taupe\/60,
+.text-taupe\/80 {
   color: var(--color-taupe) !important;
   opacity: 1 !important;
 }
